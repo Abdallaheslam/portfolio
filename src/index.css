@@ -1,0 +1,100 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-display: "Plus Jakarta Sans", "IBM Plex Sans Arabic", system-ui, -apple-system, sans-serif;
+  --font-sans: "Manrope", "IBM Plex Sans Arabic", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    background-color: #F8FAFC;
+    color: #0F172A;
+    scroll-behavior: smooth;
+    scroll-padding-top: 84px;
+    color-scheme: light;
+  }
+
+  html.dark {
+    background-color: #060A13;
+    color: #F8FAFC;
+    color-scheme: dark;
+  }
+
+  html[lang="ar"] body {
+    font-family: "IBM Plex Sans Arabic", "Manrope", system-ui, sans-serif;
+  }
+
+  html[lang="ar"] h1,
+  html[lang="ar"] h2,
+  html[lang="ar"] h3,
+  html[lang="ar"] h4 {
+    font-family: "IBM Plex Sans Arabic", "Plus Jakarta Sans", system-ui, sans-serif;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    text-wrap: balance;
+  }
+
+  :focus-visible {
+    outline: 2px solid #2563EB;
+    outline-offset: 2px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Smooth circular View Transition for Dark <-> Light mode switching */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  z-index: 9999;
+}
+
+/* Prevent patchy per-element CSS color transitions during atomic snapshot capture */
+html.theme-transitioning *,
+html.theme-transitioning *::before,
+html.theme-transitioning *::after {
+  transition: none !important;
+}
+
+/* Synchronized fallback transition for browsers without View Transitions API */
+html.theme-fallback-transition,
+html.theme-fallback-transition body,
+html.theme-fallback-transition header,
+html.theme-fallback-transition section,
+html.theme-fallback-transition footer,
+html.theme-fallback-transition article,
+html.theme-fallback-transition div,
+html.theme-fallback-transition a,
+html.theme-fallback-transition button {
+  transition:
+    background-color 280ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 280ms cubic-bezier(0.22, 1, 0.36, 1),
+    color 240ms cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+@media print {
+  header {
+    position: static;
+  }
+
+  article {
+    break-inside: avoid;
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "Abdullah Islam — Software Developer & UI/UX Designer",
+  "short_name": "Abdullah Islam",
+  "description": "Explore the portfolio of Abdullah Eslam Hassan, Software Developer & UI/UX Designer crafting responsive web apps and backend systems.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#060A13",
+  "theme_color": "#060A13",
+  "icons": [
+    {
+      "src": "./favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

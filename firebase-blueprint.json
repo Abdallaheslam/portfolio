@@ -1,0 +1,41 @@
+{
+  "entities": {
+    "VisitorReview": {
+      "title": "VisitorReview",
+      "description": "Public visitor opinion, rating, and comment submitted without authentication.",
+      "type": "object",
+      "properties": {
+        "authorName": {
+          "type": "string",
+          "description": "Display name of the visitor leaving the review.",
+          "minLength": 2,
+          "maxLength": 60
+        },
+        "comment": {
+          "type": "string",
+          "description": "Review comment text written by the visitor.",
+          "minLength": 5,
+          "maxLength": 600
+        },
+        "rating": {
+          "type": "integer",
+          "description": "Star rating from 1 to 5."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server-generated timestamp of when the review was submitted."
+        }
+      },
+      "required": ["authorName", "comment", "rating", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/visitorReviews/{reviewId}": {
+      "schema": {
+        "$ref": "#/entities/VisitorReview"
+      },
+      "description": "Public collection storing visitor reviews and star ratings without requiring login."
+    }
+  }
+}
